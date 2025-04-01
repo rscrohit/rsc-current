@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0865c2;
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid #c51919;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+}
+
+.card-header {
+    background-color: #298bec;
+    color: rgb(197, 55, 55);
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 8rem 10rem;
+    /* Increased size */
+    min-height: 380px;
+    background-color: white;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: bold;
+    font-family: sans-serif;
+    color: blueviolet;
+}
+
+.form-select,
+.form-range {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #248831;
+    border-radius: 5px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #003366;
+    border: none;
+    padding: 10px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Results Section */
+#results {
+    display: none;
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    background: rgba(122, 107, 58, 0.692);
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #10c589;
+}
+
+.table th {
+    background-color: #003366;
+    color: rgb(255, 255, 255);
+}
+
+/* Sustainability Score */
+.progress {
+    height: 30px;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    text-align: center;
+    font-weight: bold;
+    line-height: 30px;
+    transition: width 0.5s ease;
+}
+
+/* Footer */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+footer h4,
+footer h5,
+footer p {
+    margin: 5px 0;
+}
+
+footer .creator-text {
+    color: #87c319;
+}
+
+footer .students-text {
+    color: #87c319;
+}
+
+footer .professor-text {
+    font-style: italic;
+}
+
+footer i {
+    margin-right: 5px;
+}

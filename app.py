@@ -91,7 +91,7 @@ def optimize():
 #     app.run(debug=True)
 
 
-If you host this app on server use this following code snippet and commit out above  1.
+
 if __name__ == '__main__':
     from waitress import serve
     serve(app, host='0.0.0.0', port=5000)

@@ -315,38 +315,55 @@
       })
   </script>
 </body>
-<footer class="text-center p-2" style="background-color: #003366; color: white">
+<footer class="text-light py-4" style="background-color: #003366;">
   <div class="container">
-    <div class="d-flex align-items-center justify-content-start">
-      <img src="{{ url_for('static', filename='logo.png') }}" alt="Institute Logo" class="me-3" style="height: 100%" />
-      <div class="text-center">
-        <h4 class="text-light m-1">R. C. Patel Institute of Technology</h4>
-        <h5 class="text-secondary m-1">An Autonomous Institute</h5>
-        <p class="text-light small m-1">
+    <div class="row align-items-center">
+      <!-- Institute Logo -->
+      <div class="col-md-3 text-center">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Institute Logo" class="img-fluid"
+          style="max-height: 100px;">
+      </div>
+
+      <!-- Institute Information -->
+      <div class="col-md-6 text-center">
+        <h4 class="fw-bold">R. C. Patel Institute of Technology</h4>
+        <h6 class="text-warning">An Autonomous Institute</h6>
+        <p class="small">
           <b>Address:</b> Near Karvand Naka, Shahada Road, Shirpur, Maharashtra 425405
         </p>
-        <p class="creator-text small m-1" style="color: #87c319">
-          <strong>Developed by:</strong> Dr. Hiteshkumar Patil, Dr. Mahesh Patil, Prof. Yogesh Sonawane, Prof. Ganesh
-          Tapkire
-        </p>
-        <p class="professor-text small m-1">
-          Assistant Professors, Civil Department, RCPIT Shirpur.
-        </p>
-        <p class="students-text small m-1" style="color: #87c319">
-          <strong>Students:</strong> Sakshi Khairnar, Sumit Patil, Jeevan Raut, Mayuri Saner, Harshada Shirsath (SY
-          Civil), Dhiraj Sonawane (TY Civil)
-        </p>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="col-md-3 text-center">
+        <h5>Contact</h5>
+        <p class="mb-1"><i class="fas fa-phone-alt"></i> 8888559924</p>
+        <p><i class="fas fa-envelope"></i> hsp.rcpit@gmail.com</p>
       </div>
     </div>
 
-    <div class="text-center mt-2">
-      <h4 class="text-light m-1">Contact</h4>
-      <h6>RCPIT CIVIL ENGINEERING DEPARTMENT</h6>
-      <h6><i class="fas fa-phone-alt"></i> 8888559924</h6>
-      <h6><i class="fas fa-envelope"></i> hsp@gmail.com</h6>
+    <hr class="border-light">
+
+    <!-- Developed By -->
+    <div class="row text-center">
+      <div class="col-md-4">
+        <h6 class="text-success"><strong>Developed By:</strong></h6>
+        <p class="small">Dr. Hiteshkumar Patil, Dr. Mahesh Patil, Prof. Yogesh Sonawane, Prof. Ganesh Tapkire</p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="text-info"><strong>Faculty Advisors:</strong></h6>
+        <p class="small">Assistant Professors, Civil Department, RCPIT Shirpur.</p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="text-danger"><strong>Students:</strong></h6>
+        <p class="small">Sakshi Khairnar, Sumit Patil, Jeevan Raut, Mayuri Saner, Harshada Shirsath (SY Civil), Dhiraj
+          Sonawane (TY Civil)</p>
+      </div>
     </div>
 
-    <div class="text-center mt-2">
+    <hr class="border-light">
+
+    <!-- Copyright -->
+    <div class="text-center">
       <p class="small m-0">&copy; 2025 RCPIT. All Rights Reserved.</p>
     </div>
   </div>

@@ -13,17 +13,19 @@
 
 <body>
   <div class="container mt-4">
- <header class="text-center py-4"
+    <div class="container mt-4">
+      <header class="text-center py-4"
         style="background: linear-gradient(90deg, #097eeb, #d5eb13); color: rgb(141, 139, 139); border-radius: 10px;">
         <h1 class="fw-bold">AI Concrete Mix Design Optimizer</h1>
       </header>
+    </div>
 
     <div class="card">
       <div class="card-body">
         <form id="mixForm">
           <div class="row mb-3">
             <div class="col-md-6">
-              <label for="grade" class="form-label" style="color: blueviolet">Concrete Grade</label>
+              <label for="grade" class="form-label" style="color: rgb(11, 167, 240)">Concrete Grade</label>
               <select class="form-select" id="grade" name="grade" required>
                 <option value="" selected disabled>Select Grade</option>
                 {% for grade in grades %}
@@ -32,7 +34,7 @@
               </select>
             </div>
             <div class="col-md-6">
-              <label for="wcRatio" class="form-label" style="color: blueviolet">Water-Cement Ratio (w/c):
+              <label for="wcRatio" class="form-label" style="color: rgb(11, 167, 240)">Water-Cement Ratio (w/c):
                 <span id="wcRatioValue">0.45</span></label>
               <input type="range" class="form-range" id="wcRatio" name="wcRatio" min="0.36" max="0.6" step="0.01"
                 value="0.45" />
@@ -41,18 +43,18 @@
 
           <div class="row mb-3">
             <div class="col-md-4">
-              <label for="superplasticizer" class="form-label" style="color: blueviolet">Superplasticizer (%):
+              <label for="superplasticizer" class="form-label" style="color: rgb(11, 167, 240)">Superplasticizer (%):
                 <span id="superplasticizerValue">0.8</span></label>
               <input type="range" class="form-range" id="superplasticizer" name="superplasticizer" min="0.3" max="1.2"
                 step="0.1" value="0.8" />
             </div>
             <div class="col-md-4">
-              <label for="flyAsh" class="form-label" style="color: blueviolet">Fly Ash (%): <span
+              <label for="flyAsh" class="form-label" style="color: rgb(11, 167, 240)">Fly Ash (%): <span
                   id="flyAshValue">15</span></label>
               <input type="range" class="form-range" id="flyAsh" name="flyAsh" min="0" max="30" step="1" value="15" />
             </div>
             <div class="col-md-4">
-              <label for="ggbs" class="form-label" style="color: blueviolet">GGBS (%): <span
+              <label for="ggbs" class="form-label" style="color: rgb(11, 167, 240)">GGBS (%): <span
                   id="ggbsValue">20</span></label>
               <input type="range" class="form-range" id="ggbs" name="ggbs" min="0" max="35" step="1" value="20" />
             </div>
@@ -67,12 +69,13 @@
       </div>
     </div>
 
+    <!-- Results Section -->
     <div id="results" style="display: none">
       <div class="row">
         <div class="col-md-6">
           <div class="card h-100">
             <div class="card-header">
-              <h5 style="color: blueviolet">Mix Proportions</h5>
+              <h5 style="color: rgb(11, 167, 240)">Mix Proportions</h5>
             </div>
             <div class="card-body">
               <table class="table table-bordered">
@@ -106,7 +109,7 @@
         <div class="col-md-6">
           <div class="card h-100">
             <div class="card-header">
-              <h5 style="color: blueviolet">Predicted Properties</h5>
+              <h5 style="color: rgb(11, 167, 240)">Predicted Properties</h5>
             </div>
             <div class="card-body">
               <table class="table table-bordered">
@@ -138,6 +141,39 @@
         </div>
       </div>
 
+      <!-- Material Cost Breakdown Section -->
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5>Material Cost Breakdown</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th>Cement Cost</th>
+                    <td id="cementCost">-</td>
+                  </tr>
+                  <tr>
+                    <th>Water Cost</th>
+                    <td id="waterCost">-</td>
+                  </tr>
+                  <tr>
+                    <th>Fine Aggregate Cost</th>
+                    <td id="fineAggregateCost">-</td>
+                  </tr>
+                  <tr>
+                    <th>Coarse Aggregate Cost</th>
+                    <td id="coarseAggregateCost">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row mt-4">
         <div class="col-md-6">
           <div class="card">
@@ -153,7 +189,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h5 style="color: blueviolet">Sustainability Score</h5>
+              <h5 style="color: rgb(11, 167, 240)">Sustainability Score</h5>
             </div>
             <div class="card-body text-center">
               <div class="progress mb-3" style="height: 30px">
@@ -163,8 +199,7 @@
                 </div>
               </div>
               <p class="mb-0" style="color: rgba(204, 72, 24, 0.658)">
-                A higher score indicates a more sustainable mix design with
-                lower environmental impact.
+                A higher score indicates a more sustainable mix design with lower environmental impact.
               </p>
             </div>
           </div>
@@ -177,145 +212,109 @@
   <script>
     // Update range slider values
     document.getElementById("wcRatio").addEventListener("input", function () {
-      document.getElementById("wcRatioValue").textContent = this.value
-    })
+      document.getElementById("wcRatioValue").textContent = this.value;
+    });
 
-    document
-      .getElementById("superplasticizer")
-      .addEventListener("input", function () {
-        document.getElementById("superplasticizerValue").textContent =
-          this.value
-      })
+    document.getElementById("superplasticizer").addEventListener("input", function () {
+      document.getElementById("superplasticizerValue").textContent = this.value;
+    });
 
     document.getElementById("flyAsh").addEventListener("input", function () {
-      document.getElementById("flyAshValue").textContent = this.value
-    })
+      document.getElementById("flyAshValue").textContent = this.value;
+    });
 
     document.getElementById("ggbs").addEventListener("input", function () {
-      document.getElementById("ggbsValue").textContent = this.value
-    })
+      document.getElementById("ggbsValue").textContent = this.value;
+    });
 
     // Chart instance
-    let compositionChart
+    let compositionChart;
 
     // Form submission
-    document
-      .getElementById("mixForm")
-      .addEventListener("submit", function (e) {
-        e.preventDefault()
+    document.getElementById("mixForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        const formData = new FormData(this)
+      const formData = new FormData(this);
 
-        fetch("/optimize", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            // Display results
-            document.getElementById("results").style.display = "block"
-
-            // Update mix proportions
-            document.getElementById("cement").textContent =
-              data.cement + " kg/m³"
-            document.getElementById("water").textContent =
-              data.water + " kg/m³"
-            document.getElementById("fineAggregate").textContent =
-              data.fineAggregate + " kg/m³"
-            document.getElementById("coarseAggregate").textContent =
-              data.coarseAggregate + " kg/m³"
-            document.getElementById("slump").textContent = data.slump + " mm"
-
-            // Update predicted properties
-            document.getElementById("compressiveStrength").textContent =
-              data.compressiveStrength + " MPa"
-            document.getElementById("tensileStrength").textContent =
-              data.tensileStrength + " MPa"
-            document.getElementById("flexuralStrength").textContent =
-              data.flexuralStrength + " MPa"
-            document.getElementById("waterAbsorption").textContent =
-              data.waterAbsorption + " %"
-            document.getElementById("cost").textContent =
-              "₹ " + data.cost.toLocaleString()
-
-            // Update sustainability score
-            const sustainabilityProgress = document.getElementById(
-              "sustainabilityProgress"
-            )
-            sustainabilityProgress.style.width =
-              data.sustainabilityScore + "%"
-            sustainabilityProgress.textContent =
-              data.sustainabilityScore + "%"
-
-            // Set progress bar color based on score
-            if (data.sustainabilityScore >= 80) {
-              sustainabilityProgress.className = "progress-bar bg-success"
-            } else if (data.sustainabilityScore >= 60) {
-              sustainabilityProgress.className = "progress-bar bg-info"
-            } else if (data.sustainabilityScore >= 40) {
-              sustainabilityProgress.className = "progress-bar bg-warning"
-            } else {
-              sustainabilityProgress.className = "progress-bar bg-danger"
-            }
-
-            // Update chart
-            if (compositionChart) {
-              compositionChart.destroy()
-            }
-
-            const ctx = document
-              .getElementById("compositionChart")
-              .getContext("2d")
-            compositionChart = new Chart(ctx, {
-              type: "pie",
-              data: {
-                labels: [
-                  "Cement",
-                  "Water",
-                  "Fine Aggregate",
-                  "Coarse Aggregate",
-                ],
-                datasets: [
-                  {
-                    data: [
-                      data.cement,
-                      data.water,
-                      data.fineAggregate,
-                      data.coarseAggregate,
-                    ],
-                    backgroundColor: [
-                      "#6c757d",
-                      "#17a2b8",
-                      "#ffc107",
-                      "#343a40",
-                    ],
-                  },
-                ],
-              },
-              options: {
-                responsive: true,
-                plugins: {
-                  legend: {
-                    position: "bottom",
-                  },
-                },
-              },
-            })
-
-            // Scroll to results
-            document
-              .getElementById("results")
-              .scrollIntoView({ behavior: "smooth" })
-          })
-          .catch((error) => {
-            console.error("Error:", error)
-            alert(
-              "An error occurred while optimizing the mix design. Please try again."
-            )
-          })
+      fetch("/optimize", {
+        method: "POST",
+        body: formData,
       })
+        .then((response) => response.json())
+        .then((data) => {
+          // Display results
+          document.getElementById("results").style.display = "block";
+
+          // Update mix proportions
+          document.getElementById("cement").textContent = data.cement + " kg/m³";
+          document.getElementById("water").textContent = data.water + " kg/m³";
+          document.getElementById("fineAggregate").textContent = data.fineAggregate + " kg/m³";
+          document.getElementById("coarseAggregate").textContent = data.coarseAggregate + " kg/m³";
+          document.getElementById("slump").textContent = data.slump + " mm";
+
+          // Update predicted properties
+          document.getElementById("compressiveStrength").textContent = data.compressiveStrength + " MPa";
+          document.getElementById("tensileStrength").textContent = data.tensileStrength + " MPa";
+          document.getElementById("flexuralStrength").textContent = data.flexuralStrength + " MPa";
+          document.getElementById("waterAbsorption").textContent = data.waterAbsorption + " %";
+          document.getElementById("cost").textContent = "₹ " + data.cost.toLocaleString();
+
+          // Update material cost breakdown
+          document.getElementById("cementCost").textContent = "₹ " + data.cementCost.toLocaleString();
+          document.getElementById("waterCost").textContent = "₹ " + data.waterCost.toLocaleString();
+          document.getElementById("fineAggregateCost").textContent = "₹ " + data.fineAggregateCost.toLocaleString();
+          document.getElementById("coarseAggregateCost").textContent = "₹ " + data.coarseAggregateCost.toLocaleString();
+
+          // Update sustainability score
+          const sustainabilityProgress = document.getElementById("sustainabilityProgress");
+          sustainabilityProgress.style.width = data.sustainabilityScore + "%";
+          sustainabilityProgress.textContent = data.sustainabilityScore + "%";
+
+          // Set progress bar color based on score
+          if (data.sustainabilityScore >= 80) {
+            sustainabilityProgress.className = "progress-bar bg-success";
+          } else if (data.sustainabilityScore >= 60) {
+            sustainabilityProgress.className = "progress-bar bg-info";
+          } else if (data.sustainabilityScore >= 40) {
+            sustainabilityProgress.className = "progress-bar bg-warning";
+          } else {
+            sustainabilityProgress.className = "progress-bar bg-danger";
+          }
+
+          // Update chart
+          if (compositionChart) {
+            compositionChart.destroy();
+          }
+
+          const ctx = document.getElementById("compositionChart").getContext("2d");
+          compositionChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+              labels: ["Cement", "Water", "Fine Aggregate", "Coarse Aggregate"],
+              datasets: [{
+                data: [data.cement, data.water, data.fineAggregate, data.coarseAggregate],
+                backgroundColor: ["#6c757d", "#17a2b8", "#ffc107", "#343a40"],
+              }],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: "bottom" },
+              },
+            },
+          });
+
+          // Scroll to results
+          document.getElementById("results").scrollIntoView({ behavior: "smooth" });
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred while optimizing the mix design. Please try again.");
+        });
+    });
   </script>
 </body>
+
 <footer class="text-light py-4" style="background-color: #003366;">
   <div class="container">
     <div class="row align-items-center">
@@ -324,7 +323,6 @@
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Institute Logo" class="img-fluid"
           style="max-height: 100px;">
       </div>
-
       <!-- Institute Information -->
       <div class="col-md-6 text-center">
         <h4 class="fw-bold">R. C. Patel Institute of Technology</h4>
@@ -333,7 +331,6 @@
           <b>Address:</b> Near Karvand Naka, Shahada Road, Shirpur, Maharashtra 425405
         </p>
       </div>
-
       <!-- Contact Information -->
       <div class="col-md-3 text-center">
         <h5>Contact</h5>
@@ -343,11 +340,10 @@
     </div>
 
     <hr class="border-light">
-
     <!-- Developed By -->
     <div class="row text-center">
       <div class="col-md-4">
-        <h6 class="text-success"><strong>DEVELOPED BY:</strong></h6>
+        <h6 class="text-success"><strong>DEVELOPED BY</strong></h6>
         <p class="small">Dr. Hiteshkumar Patil, Dr. Mahesh Patil, Prof. Yogesh Sonawane, Prof. Ganesh Tapkire</p>
       </div>
       <div class="col-md-4">
@@ -362,7 +358,6 @@
     </div>
 
     <hr class="border-light">
-
     <!-- Copyright -->
     <div class="text-center">
       <p class="small m-0">&copy; 2025 RCPIT. All Rights Reserved.</p>
